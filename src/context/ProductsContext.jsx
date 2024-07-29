@@ -4,6 +4,7 @@ const ProductsContext = createContext({
   products: [],
   loading: true,
   error: null,
+  getProductById: id => null,
 });
 
 export default function ProductsProvider({ children }) {
@@ -27,7 +28,9 @@ export default function ProductsProvider({ children }) {
       });
   }, []);
 
-  return <ProductsContext.Provider value={{ products, loading, error }}>{children}</ProductsContext.Provider>;
+  const getProductById = id => products.find(product => product.id === parseInt(id));
+
+  return <ProductsContext.Provider value={{ products, loading, error, getProductById }}>{children}</ProductsContext.Provider>;
 }
 
 export function useProducts() {

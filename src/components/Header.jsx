@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
+import Breadcrumbs from "@components/Breadcrumbs";
 export default function Header() {
+  // Render Breadcrumbs component only if the current path is not the home page
+  const shouldShowBreadcrumbs = location.pathname !== "/";
   return (
     <header className='header'>
       <nav className='site-nav'>
@@ -30,6 +33,7 @@ export default function Header() {
             </a>
           </li>
         </ul>
+        {shouldShowBreadcrumbs && <Breadcrumbs />}
       </nav>
     </header>
   );

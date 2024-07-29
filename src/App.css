@@ -101,6 +101,10 @@ html body .site-nav-item .links-text {
     text-align: center;
 }
 
+html body .site-nav-item[data-has-links] .links-text:first-child {
+    padding-left: 0;
+}
+
 html body .site-nav-item {
     display: flex;
     align-items: center;
@@ -319,4 +323,42 @@ html body .footer {
 html body #errorPage {
     flex-direction: column;
     gap: 10px;
+}
+
+/* breadcrumbs css */
+.breadcrumbs {
+    background-color: #f9f9f9;
+    border-bottom: 0.1rem solid #ddd;
+    list-style: none;
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.breadcrumbs li {
+    margin-right: 10px;
+}
+
+.breadcrumbs li::after {
+    content: ">";
+    margin-left: 10px;
+}
+
+.breadcrumbs li:last-child::after {
+    content: "";
+}
+
+.breadcrumbs a {
+    text-decoration: none;
+}
+
+.breadcrumbs * {
+    color: var(--clr-blck);
+    font-weight: 700;
+    text-transform: capitalize;
+    font-size: var(--smfnt);
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
 }

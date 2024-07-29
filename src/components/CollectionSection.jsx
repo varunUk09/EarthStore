@@ -12,11 +12,11 @@ export default function CollectionSection(props) {
         <ul className='collectionItems'>
           {props.products.map(product => {
             return (
-              <a key={product.id} href={product.link}>
-                <img src={product.image} className='productimg' />
+              <Link key={product.id} to={`/products/${product.id}`}>
+                <img className='productimg' src={product.image} alt={product.title} />
                 <span className='producttitle'>{product.title}</span>
                 <span className='productprice'>from ${product.price}</span>
-              </a>
+              </Link>
             );
           })}
         </ul>

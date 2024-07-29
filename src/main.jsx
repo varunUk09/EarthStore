@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import Products from "@pages/Products.jsx";
 import ErrorPage from "@pages/ErrorPage.jsx";
+import Product from "@pages/Product.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductsProvider from "@context/ProductsContext";
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "products/",
     element: <Products />,
+  },
+  {
+    path: "products/:id",
+    element: <Product />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
