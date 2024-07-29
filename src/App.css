@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    font-size: 62.5%;
+    --smfnt: 1rem;
+    --mdfnt: 1.2rem;
+    --lrgfnt: 2.1rem;
+    --xlrgfnt: 3.6rem;
+    --clr-blck: #000;
+    --clr-wht: #fff;
+}
+
+html body .container {
+    max-width: 150rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* common */
+html body .title {
+    font-size: var(--lrgfnt);
+    font-weight: 700;
+    font-family: Roboto Condensed;
+    margin-bottom: 0.9rem;
+    text-transform: uppercase;
+}
+
+html body .subtext {
+    font-size: var(--mdfnt);
+    margin-bottom: 1.3rem;
+}
+
+html body .cta {
+    width: fit-content;
+    font-size: var(--mdfnt);
+    font-weight: 700;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+}
+
+html body .cta-wbg {
+    background: var(--clr-blck);
+    color: var(--clr-wht);
+}
+
+html body .cta-nbg {
+    background: var(--clr-wht);
+    color: var(--clr-blck);
+}
+
+html body .site-logo {
+    letter-spacing: -0.1rem;
+    font-size: var(--xlrgfnt);
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--clr-blck);
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+@media(max-width:767px) {
+    html body .site-logo {
+        font-size: var(--lrgfnt);
+        text-align: center;
+    }
+}
+
+/* header */
+
+html body .site-nav {
+    padding: 2rem 0;
+}
+
+html body .site-nav .site-nav-items {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+html body .site-nav-item .links-text {
+    text-decoration: none;
+    color: var(--clr-blck);
+    font-size: var(--mdfnt);
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    text-align: center;
+}
+
+html body .site-nav-item {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+html body .site-nav-item:nth-child(2) {
+    justify-content: center;
+}
+
+html body .site-nav-item:nth-child(3) {
+    justify-content: flex-end;
+}
+
+html body .site-nav-item .links-icon {
+    --wdt: 2.4rem;
+    display: flex;
+    width: var(--wdt);
+    height: var(--wdt);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    margin: 0.75rem 1.5rem;
+    color: var(--clr-blck);
+}
+
+@media(max-width:767px) {
+    html body .site-nav-item .links-icon {
+        margin: 0.75rem;
+    }
+
+    html body .site-nav-item {
+        flex: auto;
+    }
+
+    html body .site-nav-item .links-text {
+        padding: 0.5rem;
+    }
+}
+
+/* hero */
+
+html body .hero {
+    border-bottom: 0.2rem solid rgb(0 0 0 /10%);
+}
+
+html body .heroBgimg-container img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    height: 55rem;
+}
+
+@media(max-width:767px) {
+    html body .heroBgimg-container img {
+        height: 30rem;
+    }
+}
+
+
+/* collection */
+
+html body .collection {
+    padding: 8rem 0;
+}
+
+html body .collection .title,
+html body .collection .cta {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+html body .collection .cta {
+    text-decoration: none;
+}
+
+html body .collectionItems {
+    display: flex;
+    margin-top: 5rem;
+    flex-wrap: wrap;
+}
+
+html body .collectionItems .productimg {
+    display: block;
+    object-fit: contain;
+    width: 100%;
+    max-height: 30rem;
+    flex: 1;
+    margin-bottom: 2rem;
+}
+
+html body .collectionItems a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--clr-blck);
+    width: 33.33%;
+    padding: 2rem;
+}
+
+html body .collectionItems .producttitle {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed';
+    font-size: var(--mdfnt);
+    text-align: center;
+}
+
+@media(max-width:767px) {
+    html body .collection {
+        padding: 4rem 0;
+    }
+
+    html body .collectionItems {
+        flex-wrap: wrap;
+        gap: 3rem;
+    }
+
+    html body .collectionItems a {
+        flex: auto;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+/* footer */
+
+html body .footer-content {
+    margin-top: 2rem;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+html body .footer-items {
+    --gap: 1.5rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    width: 20%;
+}
+
+html body .footer-items.footer-newsletter {
+    width: 23%;
+}
+
+html body .footer-menu-item_link,
+html body .footer-newsletter-item>span,
+html body .footer-newsletter-item>p {
+    text-decoration: none;
+    font-size: var(--smfnt);
+    color: var(--clr-blck);
+    cursor: pointer;
+}
+
+html body .footer-menu-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+html body .footer-newsletter-form {
+    display: flex;
+    gap: var(--gap);
+    flex-direction: column;
+}
+
+html body .footer-newsletter-form .form-group {
+    display: flex;
+    border-bottom: 0.2rem solid var(--clr-blck);
+}
+
+html body .footer-newsletter-form .form-group input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 1rem 1rem 1rem 0;
+    font-size: var(--mdfnt);
+    color: var(--clr-blck);
+}
+
+html body .footer-newsletter-form .form-group button[type="submit"] {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 1rem;
+    cursor: pointer;
+}
+
+html body .footer {
+    padding: 2rem 0;
+}
+
+@media(max-width:767px) {
+    html body .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    html body .footer-items,
+    html body .footer-items.footer-newsletter {
+        width: 100%;
+    }
+}
+
+/* error page */
+html body #errorPage {
+    flex-direction: column;
+    gap: 10px;
+}
