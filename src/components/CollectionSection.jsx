@@ -12,11 +12,25 @@ export default function CollectionSection(props) {
         <ul className='collectionItems'>
           {props.products.map(product => {
             return (
-              <Link key={product.id} to={`/products/${product.id}`}>
+              <li key={product.id} className='collectionItem'>
                 <img className='productimg' src={product.image} alt={product.title} />
                 <span className='producttitle'>{product.title}</span>
                 <span className='productprice'>from ${product.price}</span>
-              </Link>
+                <form className='productAddtobagform'>
+                  <div className='productQtywrapper'>
+                    <button className='productQtyUp cta cta-wbg productQtyCta' type='button'>
+                      +
+                    </button>
+                    <input type='number' className='productQtyInput' />
+                    <button className='productQtyDown cta cta-wbg productQtyCta' type='button'>
+                      -
+                    </button>
+                  </div>
+                  <button className='productAtc cta cta-wbg' type='submit'>
+                    Add to bag
+                  </button>
+                </form>
+              </li>
             );
           })}
         </ul>

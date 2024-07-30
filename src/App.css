@@ -49,6 +49,8 @@ html body .cta {
     font-weight: 700;
     padding: 1rem 1.5rem;
     cursor: pointer;
+    border: none;
+    outline: none;
 }
 
 html body .cta-wbg {
@@ -199,13 +201,12 @@ html body .collectionItems .productimg {
     margin-bottom: 2rem;
 }
 
-html body .collectionItems a {
+html body .collectionItems .collectionItem {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    cursor: pointer;
     text-decoration: none;
     color: var(--clr-blck);
     width: 33.33%;
@@ -220,6 +221,29 @@ html body .collectionItems .producttitle {
     text-align: center;
 }
 
+html body .productAddtobagform {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+html body .productAtc {
+    width: 100%;
+}
+
+html body .productQtywrapper {
+    display: flex;
+}
+
+html body .productQtyCta {
+    padding: 0.5rem 1rem;
+}
+
+html body .productQtyInput {
+    border: 1px solid var(--clr-blck);
+    outline: none;
+}
+
 @media(max-width:767px) {
     html body .collection {
         padding: 4rem 0;
@@ -230,7 +254,7 @@ html body .collectionItems .producttitle {
         gap: 3rem;
     }
 
-    html body .collectionItems a {
+    html body .collectionItems .collectionItem {
         flex: auto;
         width: 100%;
         max-width: 300px;
