@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Breadcrumbs from "@components/Breadcrumbs";
 import { useContext } from "react";
-import { MainContext } from "@/App.jsx";
+import { CartContext } from "@context/CartContext";
 
 export default function Header() {
-  const { miniCartShow, setMiniCartShow } = useContext(MainContext);
+  const location = useLocation();
+  const { miniCartShow, setMiniCartShow } = useContext(CartContext);
+
   // Render Breadcrumbs component only if the current path is not the home page
   const shouldShowBreadcrumbs = location.pathname !== "/";
   return (

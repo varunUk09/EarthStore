@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "@context/CartContext";
+import ProductDetailsWithQuantity from "@components/ProductDetailsWithQuantity";
 export default function CollectionSection(props) {
+  const { addToBag } = useContext(CartContext);
   return (
     <section className='collection'>
       <div className='container'>
@@ -16,15 +20,13 @@ export default function CollectionSection(props) {
                 <img className='productimg' src={product.image} alt={product.title} />
                 <span className='producttitle'>{product.title}</span>
                 <span className='productprice'>from ${product.price}</span>
-                <form className='productAddtobagform'>
+                <form
+                  className='productAddtobagform'
+                  onSubmit={e => {
+                    addToBag(e);
+                  }}>
                   <div className='productQtywrapper'>
-                    <button className='productQtyUp cta cta-wbg productQtyCta' type='button'>
-                      +
-                    </button>
-                    <input type='number' className='productQtyInput' />
-                    <button className='productQtyDown cta cta-wbg productQtyCta' type='button'>
-                      -
-                    </button>
+                    <ProductDetailsWithQuantity id={product.id} image={product.image} title={product.title} price={product.price} quantity={1} />
                   </div>
                   <button className='productAtc cta cta-wbg' type='submit'>
                     Add to bag

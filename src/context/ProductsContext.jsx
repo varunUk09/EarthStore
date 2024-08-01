@@ -1,13 +1,7 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
+const ProductsContext = createContext("");
 
-const ProductsContext = createContext({
-  products: [],
-  loading: true,
-  error: null,
-  getProductById: id => null,
-});
-
-export default function ProductsProvider({ children }) {
+const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,13 +22,8 @@ export default function ProductsProvider({ children }) {
       });
   }, []);
 
-  const getProductById = id => products.find(product => product.id === parseInt(id));
+  return <ProductsContext.Provider value={{ products, loading, error }}>{children}</ProductsContext.Provider>;
+};
 
-  return <ProductsContext.Provider value={{ products, loading, error, getProductById }}>{children}</ProductsContext.Provider>;
-}
-
-export function useProducts() {
-  const context = useContext(ProductsContext);
-  console.log("useProducts context:", context);
-  return context;
-}
+export default ProductsProvider;
+export { ProductsContext };

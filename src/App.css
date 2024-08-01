@@ -389,6 +389,7 @@ html body #errorPage {
 
 /* mini cart  */
 html body .miniCartwrapper {
+    --transitionTime: 0.4s;
     position: fixed;
     top: 0;
     left: 0;
@@ -396,13 +397,13 @@ html body .miniCartwrapper {
     height: 100vh;
     background: rgb(255 255 255 / 53%);
     display: flex;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity var(--transitionTime) ease-in-out;
     justify-content: flex-end;
 }
 
 html body .miniCartwrapper:not(.show) {
     opacity: 0;
-    visibility: hidden;
+    pointer-events: none;
 }
 
 html body .miniCartContainer {
@@ -413,7 +414,12 @@ html body .miniCartContainer {
     width: calc(100% - 2rem);
     max-width: 45rem;
     display: flex;
-    transition: transform 0.4s ease-in-out;
+    transform: translateX(100%);
+    transition: transform var(--transitionTime) ease-in-out;
+}
+
+html body .miniCartwrapper.show .miniCartContainer {
+    transform: translateX(0);
 }
 
 html body .miniCartdrawerItem {
@@ -423,8 +429,12 @@ html body .miniCartdrawerItem {
 
 html body .miniCartdrawerItem .itemImgWrapper img {
     display: block;
-    width: 100%;
-    max-width: 15rem;
+    max-width: 7rem;
+    max-height: 7rem;
+    width: 7rem;
+    height: 7rem;
+    object-fit: contain;
+    object-position: center;
 }
 
 html body .miniCartContent {
@@ -437,6 +447,23 @@ html body .miniCartdrawerItems {
     flex: 1;
     overflow-y: auto;
     padding-bottom: 1rem;
+    scrollbar-width: 0;
+}
+
+html body .miniCartdrawerItems:empty::before {
+    content: 'Your cart is empty!';
+    font-size: var(--mdfnt);
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    border-bottom: 1px solid;
+    width: max-content;
+    margin: 0 auto;
+    padding-bottom: 0.2rem;
+}
+
+html body .miniCartdrawerItems::-webkit-scrollbar {
+    display: none;
 }
 
 html body .miniCartTitle {
@@ -451,14 +478,26 @@ html body .miniCartTitle {
     padding-bottom: 1rem;
 }
 
+
+html body .miniCartdrawerItem .itemDetail .itemTitle .itemRemove,
 html body .closeMiniCart {
-    display: flex;
-    align-items: center;
+    --dim: 3rem;
     border: none;
     outline: none;
-    background: transparent;
+    min-width: var(--dim);
+    max-height: var(--dim);
+    max-width: var(--dim);
+    min-height: var(--dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100vmax;
     cursor: pointer;
-    padding: 1rem;
+    background: transparent;
+}
+
+html body .miniCartdrawerItem .itemDetail .itemTitle .itemRemove {
+    background: #f7f7f7;
 }
 
 html body .miniCartFooter .miniCartCheckout {
@@ -498,6 +537,10 @@ html body .miniCartdrawerItem .itemDetail .itemTitle {
     font-size: var(--mdfnt);
     font-weight: 700;
     letter-spacing: 0.1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    justify-content: space-between;
 }
 
 html body .miniCartdrawerItem .itemDetail .itemQtyForm {
@@ -517,8 +560,22 @@ html body .miniCartdrawerItem .itemDetail .itemQtyForm .productQtywrapper .produ
 
 html body .miniCartdrawerItem+.miniCartdrawerItem {
     margin-top: 1.3rem;
+    padding-top: 1.3rem;
+    border-top: 0.1rem solid #ddd;
 }
 
 html body .miniCartFooter {
-    padding-top: 1rem;
+    padding: 2rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+}
+
+@media(max-width:576px) {
+    html body .miniCartContainer {
+        max-width: 100%;
+        width: 100%;
+    }
 }

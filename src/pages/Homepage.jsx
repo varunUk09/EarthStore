@@ -1,6 +1,5 @@
 import Hero from "@components/Hero";
 import CollectionSection from "@components/CollectionSection";
-import App from "@/App";
 
 function Homepage() {
   const HeroFeatureproducts = [
@@ -48,12 +47,10 @@ function Homepage() {
     },
   ];
   return (
-    <App>
-      <main className='main'>
-        <Hero />
-        <CollectionSection products={HeroFeatureproducts} title='Feature' link='/products' />
-      </main>
-    </App>
+    <>
+      <Hero />
+      <CollectionSection products={HeroFeatureproducts} title='Feature' link='/products' />
+    </>
   );
 }
 
