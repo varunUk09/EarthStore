@@ -13,8 +13,8 @@
 
 :root {
     font-size: 62.5%;
-    --smfnt: 1rem;
-    --mdfnt: 1.2rem;
+    --smfnt: 1.2rem;
+    --mdfnt: 1.35rem;
     --lrgfnt: 2.1rem;
     --xlrgfnt: 3.6rem;
     --clr-blck: #000;
@@ -122,7 +122,7 @@ html body .site-nav-item:nth-child(3) {
 }
 
 html body .site-nav-item .links-icon {
-    --wdt: 2.4rem;
+    --wdt: 3.6rem;
     display: flex;
     width: var(--wdt);
     height: var(--wdt);
@@ -131,6 +131,24 @@ html body .site-nav-item .links-icon {
     align-items: center;
     margin: 0.75rem 1.5rem;
     color: var(--clr-blck);
+    position: relative;
+}
+
+html body .site-nav-item .links-icon .minicartnums {
+    content: attr(data-total-items);
+    --wdt: 2.1rem;
+    position: absolute;
+    right: 0;
+    background: #000000;
+    width: var(--wdt);
+    height: var(--wdt);
+    border-radius: 100vmax;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    bottom: 0;
+    font-size: 1rem;
 }
 
 @media(max-width:767px) {
@@ -144,6 +162,14 @@ html body .site-nav-item .links-icon {
 
     html body .site-nav-item .links-text {
         padding: 0.5rem;
+    }
+
+    html body .site-nav-item:nth-child(2) {
+        justify-content: flex-start;
+    }
+
+    html body .site-nav-item:nth-child(1) {
+        display: none;
     }
 }
 
@@ -237,11 +263,17 @@ html body .productQtywrapper {
 
 html body .productQtyCta {
     padding: 0.5rem 1rem;
+    background: transparent;
+    border: 0.1rem solid #ddd;
+    color: var(--clr-blck);
 }
 
 html body .productQtyInput {
-    border: 1px solid var(--clr-blck);
+    border: 0.1rem solid #ddd;
     outline: none;
+    text-align: center;
+    border-left: 0;
+    border-right: 0;
 }
 
 @media(max-width:767px) {
@@ -315,7 +347,7 @@ html body .footer-newsletter-form .form-group input {
     border: none;
     outline: none;
     padding: 1rem 1rem 1rem 0;
-    font-size: var(--mdfnt);
+    font-size: var(--smfnt);
     color: var(--clr-blck);
 }
 
@@ -523,6 +555,7 @@ html body .miniCartdrawerItem .itemDetail {
     display: flex;
     flex-direction: column;
     flex: 1;
+    gap: 1rem;
 }
 
 html body .miniCartdrawerItem .itemDetail .itemTitle,
@@ -536,11 +569,11 @@ html body .miniCartdrawerItem .itemDetail .itemTitle {
     flex: 1;
     font-size: var(--mdfnt);
     font-weight: 700;
-    letter-spacing: 0.1rem;
     display: flex;
     align-items: flex-start;
     gap: 1rem;
     justify-content: space-between;
+    letter-spacing: normal;
 }
 
 html body .miniCartdrawerItem .itemDetail .itemQtyForm {
@@ -551,7 +584,7 @@ html body .miniCartdrawerItem .itemDetail .itemQtyForm {
 }
 
 html body .miniCartdrawerItem .itemDetail .itemQtyForm .productQtywrapper {
-    width: 14rem;
+    width: 10rem;
 }
 
 html body .miniCartdrawerItem .itemDetail .itemQtyForm .productQtywrapper .productQtyInput {

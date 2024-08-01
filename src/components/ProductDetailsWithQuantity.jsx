@@ -1,66 +1,90 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import { CartContext } from "@context/CartContext";
 export default function ProductDetailsWithQuantity({ id, image, title, price, quantity, isMinicart = false }) {
-  const { addToBag } = useContext(CartContext);
+  const { addToBag, removeFromCart } = useContext(CartContext);
   const [qty, setQty] = useState(quantity);
+  const [valueUpdated, setValueUpdated] = useState(false);
   const updateQty = value => {
     setQty(prevValue => {
-      let newQty = 0;
-      if (value < 0 || isNaN(value)) {
-        newQty = prevValue;
-      } else {
-        if (value <= 10) {
-          newQty = value;
-        } else {
-          newQty = prevValue;
-        }
-      }
-      if (isMinicart) {
-        // If it's the mini cart, trigger form submission programmatically
-        const productData = {
-          name: title,
-          image: image,
-          productId: id,
-          quantity: newQty,
-          price: price,
-        };
-
-        const callBack = {
-          productData: productData, // Simulate form elements
-          minicart: true,
-        };
-
-        addToBag(callBack); // Call addToBag with the simulated event
+      let newQty = prevValue;
+      if (!isNaN(value) && value >= 0) {
+        newQty = value;
       }
       return newQty;
     });
+    setValueUpdated(true);
   };
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return (...args) => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func(...args);
+      }, delay);
+    };
+  };
+  const debouncedAddToBag = useCallback(
+    debounce(newQty => {
+      if (isMinicart) {
+        addToBag({
+          title: title,
+          image: image,
+          id: id,
+          quantity: newQty,
+          price: price,
+          cart: true,
+        });
+      }
+    }, 500),
+    [addToBag, id, image, isMinicart, price, title]
+  );
+
+  const debouncedRemove = useCallback(
+    debounce(id => {
+      if (isMinicart) {
+        removeFromCart(id);
+      }
+    }, 500),
+    [addToBag, id, image, isMinicart, price, title]
+  );
+
+  useEffect(() => {
+    console.log("QTY : ", qty);
+    if (valueUpdated && qty && qty > 0) {
+      debouncedAddToBag(qty);
+    }
+    if (valueUpdated && qty && qty == 0) {
+      debouncedRemove(id);
+    }
+  }, [qty, valueUpdated]);
+
   // Update qty when quantity prop changes
   useEffect(() => {
     setQty(quantity);
   }, [quantity]);
+
   return (
     <>
-      <input type='hidden' value={id} name='productId' />
-      <input type='hidden' value={title} name='productTitle' />
-      <input type='hidden' value={image} name='productImage' />
-      <input type='hidden' value={price} name='productPrice' />
-      <button
-        className='productQtyUp cta cta-wbg productQtyCta'
-        type='button'
-        onClick={() => {
-          updateQty(qty + 1);
-        }}>
-        +
-      </button>
-      <input type='text' pattern='[0-9]*' name='productQty' className='productQtyInput' value={qty} onChange={e => updateQty(e.target.value)} />
+      <input type='hidden' value={id} name='id' />
+      <input type='hidden' value={title} name='title' />
+      <input type='hidden' value={image} name='image' />
+      <input type='hidden' value={price} name='price' />
       <button
         className='productQtyDown cta cta-wbg productQtyCta'
         type='button'
         onClick={() => {
-          updateQty(qty - 1);
+          updateQty(Number(qty) - 1);
         }}>
         -
+      </button>
+      <input type='text' pattern='[0-9]*' name='quantity' className='productQtyInput' value={qty} onChange={e => updateQty(e.target.value)} />
+      <button
+        className='productQtyUp cta cta-wbg productQtyCta'
+        type='button'
+        onClick={() => {
+          updateQty(Number(qty) + 1);
+        }}>
+        +
       </button>
     </>
   );

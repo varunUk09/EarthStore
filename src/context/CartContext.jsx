@@ -20,71 +20,57 @@ const CartProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
-  // add to cart
-  const addToBag = callback => {
-    let product = {};
-    if (!callback.minicart) {
-      callback.preventDefault();
-      const formData = new FormData(callback.target); // Create FormData object from the form
-      // Extract values from the form
-      const productId = formData.get("productId");
-      const quantity = parseInt(formData.get("productQty") || 0);
-      const productTitle = formData.get("productTitle");
-      const productImage = formData.get("productImage");
-      const productPrice = formData.get("productPrice");
-      product = {
-        name: productTitle,
-        image: productImage,
-        productId: productId,
-        quantity: quantity,
-        price: productPrice,
-      };
-    } else {
-      product = callback.productData;
-    }
 
-    console.log(product);
+  // Add or update item in cart
+  const addToBag = product => {
+    console.log("Adding product with details : ", product);
+    setCart(prevCart => {
+      const existingItemIndex = prevCart.cartItems.findIndex(item => item.id === product.id);
+      let updatedItems;
 
-    updateCartItem(product);
-  };
-  const updateCartItem = newProduct => {
-    setCart(prevItems => {
-      // Find if the product already exists in the cart
-      const productIndex = prevItems.cartItems.findIndex(item => item.productId === newProduct.productId);
-      let NEWITEMS = [];
-      if (productIndex > -1) {
-        // Product exists in the cart, update its quantity
-        const updatedItems = [...prevItems.cartItems];
-        updatedItems[productIndex] = {
-          ...updatedItems[productIndex],
-          quantity: newProduct.quantity,
-        };
-        NEWITEMS = updatedItems;
+      if (existingItemIndex > -1) {
+        // Update existing item
+        updatedItems = prevCart.cartItems.map((item, index) => {
+          if (index === existingItemIndex) {
+            let newqty = Number(product.quantity); // new
+            let oldqty = Number(item.quantity);
+            let qty = oldqty + newqty;
+            if (product.cart) {
+              qty = newqty;
+            }
+            return {
+              ...item,
+              quantity: qty,
+            };
+          }
+          return item;
+        });
       } else {
-        // Product does not exist, add it to the cart
-        NEWITEMS = [...prevItems.cartItems, newProduct];
+        // Add new item
+        updatedItems = [...prevCart.cartItems, product];
       }
-      const subtotal = cartTotal(NEWITEMS);
+
+      const subtotal = calculateTotal(updatedItems);
       setMiniCartShow(true);
-      return {
-        cartItems: NEWITEMS,
-        subtotal: subtotal,
-      };
+      return { cartItems: updatedItems, subtotal };
     });
   };
   // Function to calculate cart total
-  const cartTotal = cartItems => {
-    return cartItems
-      .reduce((t, crr) => {
-        return (t += Math.floor(crr.price));
-      }, 0.0)
-      .toFixed(2);
+  const calculateTotal = cartItems => {
+    const total = cartItems.reduce((t, crr) => {
+      console.log(crr);
+      const crrItemQty = Number(crr.quantity);
+      const crrItemPrice = Number(crr.price);
+      const total = crrItemPrice * crrItemQty;
+      return (t += total);
+    }, 0.0);
+    return total.toFixed(2);
   };
   // Function to remove item from cart
   const removeFromCart = id => {
     setCart(prevCart => {
-      let NEWITEMS = prevCart.cartItems.filter(item => item.productId !== id);
-      const subtotal = cartTotal(NEWITEMS);
+      let NEWITEMS = prevCart.cartItems.filter(item => item.id !== id);
+      const subtotal = calculateTotal(NEWITEMS);
       setMiniCartShow(true);
       return {
         cartItems: NEWITEMS,

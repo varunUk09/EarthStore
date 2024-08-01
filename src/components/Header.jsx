@@ -5,8 +5,8 @@ import { CartContext } from "@context/CartContext";
 
 export default function Header() {
   const location = useLocation();
-  const { miniCartShow, setMiniCartShow } = useContext(CartContext);
-
+  const { miniCartShow, setMiniCartShow, cart } = useContext(CartContext);
+  const cartItemsNum = cart.cartItems.length;
   // Render Breadcrumbs component only if the current path is not the home page
   const shouldShowBreadcrumbs = location.pathname !== "/";
   return (
@@ -29,6 +29,7 @@ export default function Header() {
               onClick={() => {
                 setMiniCartShow(!miniCartShow);
               }}>
+              {cartItemsNum > 0 && <span className='minicartnums'>{cart.cartItems.length > 5 ? "5+" : cart.cartItems.length}</span>}
               <svg aria-hidden='true' focusable='false' role='presentation' viewBox='0 0 64 64'>
                 <g fill='none' stroke='#000' strokeWidth='2'>
                   <path d='M25 26c0-15.79 3.57-20 8-20s8 4.21 8 20'></path>
