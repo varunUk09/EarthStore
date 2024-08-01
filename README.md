@@ -1,6 +1,11 @@
+![](brave_q8cH7Df38b.gif)
+![EarthStore](https://earthstorev1.netlify.app/) is an E-commerce site built with React.js
+User can Add,Remove,Update cart items
+
+Technologies used:
+React Js
+Html
+Css
+
 My Inspiration : https://store.benjaminhardman.com/
-Fake store api : https://fakestoreapi.com/
-
-<!-- How outlet works -->
-
-![How outlet works ](howoutletworks.png)
+Store api I have used : https://fakestoreapi.com/
