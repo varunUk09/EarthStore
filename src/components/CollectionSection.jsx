@@ -42,8 +42,8 @@ export default function CollectionSection(props) {
                   <div className='productQtywrapper'>
                     <ProductDetailsWithQuantity id={product.id} image={product.image} title={product.title} price={product.price} quantity={1} />
                   </div>
-                  <button className='productAtc cta cta-wbg' type='submit'>
-                    Add to bag
+                  <button className='productAtc cta cta-wbg hoverCta' type='submit'>
+                    ADD TO CART
                   </button>
                 </form>
               </li>

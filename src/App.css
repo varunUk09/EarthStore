@@ -85,12 +85,22 @@ html body .hoverLine::after {
     display: block;
     height: 0.1rem;
     background: var(--clr-blck);
-    transition: width 0.5s ease-in-out;
+    transition: width 0.3s ease-in-out;
 }
 
 html body .hoverLine:hover:after {
     width: 100%;
     left: 0;
+}
+
+html body .hoverCta {
+    border: 0.2rem solid var(--clr-blck);
+    transition: all 0.3s linear;
+}
+
+html body .hoverCta:hover {
+    background-color: var(--clr-wht);
+    color: var(--clr-blck);
 }
 
 @media(max-width:767px) {

@@ -12,22 +12,22 @@ export default function Footer() {
           <ul className='footer-items footer-menu'>
             <li className='footer-menu-item'>
               <a href='#' className='footer-menu-item_link'>
-                FAQ &amp; Shipping Information
+                <span className='hoverLine'>FAQ &amp; Shipping Information</span>
               </a>
             </li>
             <li className='footer-menu-item'>
               <a href='#' className='footer-menu-item_link'>
-                About Us
+                <span className='hoverLine'>About Us</span>
               </a>
             </li>
             <li className='footer-menu-item'>
               <a href='#' className='footer-menu-item_link'>
-                Terms and Conditions
+                <span className='hoverLine'>Terms and Conditions</span>
               </a>
             </li>
             <li className='footer-menu-item'>
               <a href='#' className='footer-menu-item_link'>
-                Privacy Policy
+                <span className='hoverLine'>Privacy Policy</span>
               </a>
             </li>
           </ul>
@@ -46,9 +46,6 @@ export default function Footer() {
                   </button>
                 </div>
               </form>
-            </li>
-            <li className='footer-menu-item'>
-              <a href='#' className='footer-menu-item_link'></a>
             </li>
           </ul>
         </div>

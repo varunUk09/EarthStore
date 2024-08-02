@@ -67,7 +67,7 @@ export default function Drawer() {
               <span className='text'>Subtotal</span>
               <span className='value'>${cart.subtotal}</span>
             </div>
-            <button className='miniCartCheckout cta cta-wbg'>Checkout</button>
+            <button className='miniCartCheckout cta cta-wbg hoverCta'>CHECKOUT</button>
           </div>
         </div>
       </div>
