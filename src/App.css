@@ -251,6 +251,7 @@ html body .productAddtobagform {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width:100%;
 }
 
 html body .productAtc {
@@ -259,6 +260,10 @@ html body .productAtc {
 
 html body .productQtywrapper {
     display: flex;
+}
+
+html body .productAddtobagform .productQtywrapper{
+    display:none;
 }
 
 html body .productQtyCta {
