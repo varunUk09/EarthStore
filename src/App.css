@@ -303,6 +303,10 @@ html body .productQtyCta {
     color: var(--clr-blck);
 }
 
+html body .productQtyCta:hover {
+    background: rgb(0 0 0/2%);
+}
+
 html body .productQtyInput {
     border: 0.1rem solid #ddd;
     outline: none;
