@@ -301,6 +301,7 @@ html body .productQtyCta {
     background: transparent;
     border: 0.1rem solid #ddd;
     color: var(--clr-blck);
+    transition: all 0.3s linear;
 }
 
 html body .productQtyCta:hover {
