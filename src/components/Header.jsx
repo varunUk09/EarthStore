@@ -15,7 +15,7 @@ export default function Header() {
         <ul className='site-nav-items container'>
           <li className='site-nav-item' data-has-links>
             <Link to='/products' className='links-text'>
-              All Products
+              <span className='hoverLine'>All Products</span>
             </Link>
           </li>
           <li className='site-nav-item'>

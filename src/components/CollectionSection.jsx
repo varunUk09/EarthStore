@@ -24,7 +24,7 @@ export default function CollectionSection(props) {
         <h2 className='title'>{props.title}</h2>
         {props.link && (
           <Link to='/products' className='cta cta-nbg'>
-            VIEW ALL PRODUCTS
+            <span className='hoverLine'>VIEW ALL PRODUCTS</span>
           </Link>
         )}
         <ul className='collectionItems'>
