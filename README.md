@@ -1,5 +1,4 @@
-![](brave_q8cH7Df38b.gif)
-[EarthStore](https://earthstorev1.netlify.app/) is an E-commerce site built with React.js
+👉[EarthStore](https://earthstorev1.netlify.app/) is an E-commerce site built with React.js
 User can Add,Remove,Update cart items
 
 Technologies used:
