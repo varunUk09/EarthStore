@@ -4,6 +4,7 @@ const CartContext = createContext("");
 
 const CartProvider = ({ children }) => {
   const [miniCartShow, setMiniCartShow] = useState(false);
+  const [cartUpdated, setCartUpdated] = useState(false);
   const [cart, setCart] = useState({
     cartItems: [],
     subtotal: 0.0,
@@ -19,7 +20,22 @@ const CartProvider = ({ children }) => {
   // Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
+    if (cart.cartItems.length > 0) {
+      console.log("cart updated!");
+    }
   }, [cart]);
+
+  // Handle cartUpdated state
+  useEffect(() => {
+    if (cartUpdated) {
+      const timer = setTimeout(() => {
+        setCartUpdated(false);
+      }, 1000);
+
+      // Clean up the timer
+      return () => clearTimeout(timer);
+    }
+  }, [cartUpdated]);
 
   // Add or update item in cart
   const addToBag = product => {
@@ -51,7 +67,7 @@ const CartProvider = ({ children }) => {
       }
 
       const subtotal = calculateTotal(updatedItems);
-      setMiniCartShow(true);
+      setCartUpdated(true);
       return { cartItems: updatedItems, subtotal };
     });
   };
@@ -79,7 +95,7 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  return <CartContext.Provider value={{ miniCartShow, setMiniCartShow, addToBag, cart, removeFromCart }}>{children}</CartContext.Provider>;
+  return <CartContext.Provider value={{ miniCartShow, setMiniCartShow, addToBag, cart, removeFromCart, cartUpdated }}>{children}</CartContext.Provider>;
 };
 
 export default CartProvider;

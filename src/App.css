@@ -117,11 +117,7 @@ html body .header {
     top: 0;
     background: white;
     z-index: 999;
-    border-bottom: 1px solid #ddd;
-}
-
-html body .site-nav {
-    padding: 2rem 0;
+    border-bottom: 0.1rem solid #ddd;
 }
 
 html body .site-nav .site-nav-items {
@@ -129,6 +125,8 @@ html body .site-nav .site-nav-items {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 html body .site-nav-item .links-text {
@@ -288,7 +286,7 @@ html body .collectionItems .producttitle {
 html body .productAddtobagform {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1rem;
     width: 100%;
 }
 
@@ -337,7 +335,7 @@ html body .productQtyInput {
     html body .collectionItems .collectionItem {
         flex: auto;
         width: 100%;
-        max-width: 300px;
+        max-width: 30rem;
         margin: 0 auto;
     }
 }
@@ -426,13 +424,13 @@ html body .footer {
 /* error page */
 html body #errorPage {
     flex-direction: column;
-    gap: 10px;
+    gap: 1rem;
 }
 
 /* breadcrumbs css */
 .breadcrumbs {
     background-color: #f9f9f9;
-    border-bottom: 0.1rem solid #ddd;
+    /* border-bottom: 0.1rem solid #ddd; */
     list-style: none;
     display: flex;
     padding-top: 1rem;
@@ -440,12 +438,12 @@ html body #errorPage {
 }
 
 .breadcrumbs li {
-    margin-right: 10px;
+    margin-right: 1rem;
 }
 
 .breadcrumbs li::after {
     content: ">";
-    margin-left: 10px;
+    margin-left: 1rem;
 }
 
 .breadcrumbs li:last-child::after {
@@ -505,7 +503,7 @@ html body .miniCartwrapper.show .miniCartContainer {
 
 html body .miniCartdrawerItem {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
 }
 
 html body .miniCartdrawerItem .itemImgWrapper img {
@@ -537,7 +535,7 @@ html body .miniCartdrawerItems:empty::before {
     font-weight: 700;
     display: block;
     text-align: center;
-    border-bottom: 1px solid;
+    border-bottom: 0.1rem solid;
     width: max-content;
     margin: 0 auto;
     padding-bottom: 0.2rem;
@@ -653,6 +651,55 @@ html body .miniCartFooter {
     left: 0;
     width: 100%;
     background: white;
+}
+
+html body .miniCartMessageWrapper {
+    --extra: 1.9rem;
+    position: absolute;
+    bottom: 0;
+    width: max-content;
+    overflow-wrap: anywhere;
+    right: 0;
+    background: black;
+    border: 0.1rem solid black;
+    padding: 1rem;
+    transform: translateY(calc(var(--extra) + 70%));
+    pointer-events: none;
+    user-select: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    -webkit-transform: translateY(calc(var(--extra) + 70%));
+    -webkit-transition: opacity 0.3s ease, transform 0.3s ease;
+    border-radius: 0.3rem;
+    color: white;
+    box-shadow: 0 0 0.5rem 0.1rem #ddd;
+}
+
+html body .miniCartMessageWrapper.show {
+    opacity: 1;
+    transform: translateY(calc(var(--extra) + 80%));
+    -webkit-transform: translateY(calc(var(--extra) + 80%));
+}
+
+html body .miniCartMessageWrapper::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--extra) * -1 + 0.1rem);
+    right: 0%;
+    border-width: calc(var(--extra)/2);
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}
+
+html body .miniCartMessage {
+    font-weight: bold;
+    font-size: var(--smfnt);
+}
+
+html body .miniCartMessageWrapper:empty {
+    pointer-events: none;
 }
 
 @media(max-width:576px) {
