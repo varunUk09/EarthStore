@@ -67,7 +67,9 @@ const CartProvider = ({ children }) => {
       }
 
       const subtotal = calculateTotal(updatedItems);
-      setCartUpdated(true);
+      if (!product.cart) {
+        setCartUpdated(true);
+      }
       return { cartItems: updatedItems, subtotal };
     });
   };
