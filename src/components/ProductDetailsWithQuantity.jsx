@@ -49,7 +49,6 @@ export default function ProductDetailsWithQuantity({ id, image, title, price, qu
   );
 
   useEffect(() => {
-    console.log("QTY : ", qty);
     if (valueUpdated && qty && qty > 0) {
       debouncedAddToBag(qty);
     }

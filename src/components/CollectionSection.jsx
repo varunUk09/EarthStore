@@ -15,7 +15,6 @@ export default function CollectionSection(props) {
         data[element.name] = element.value;
       }
     }
-    console.log("Sending data : ", data);
     addToBag(data);
   };
   return (

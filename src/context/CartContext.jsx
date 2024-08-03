@@ -19,9 +19,8 @@ const CartProvider = ({ children }) => {
   }, []);
   // Save cart to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
     if (cart.cartItems.length > 0) {
-      console.log("cart updated!");
+      localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);
 
@@ -39,7 +38,6 @@ const CartProvider = ({ children }) => {
 
   // Add or update item in cart
   const addToBag = product => {
-    console.log("Adding product with details : ", product);
     setCart(prevCart => {
       const existingItemIndex = prevCart.cartItems.findIndex(item => item.id === product.id);
       let updatedItems;
@@ -76,7 +74,6 @@ const CartProvider = ({ children }) => {
   // Function to calculate cart total
   const calculateTotal = cartItems => {
     const total = cartItems.reduce((t, crr) => {
-      console.log(crr);
       const crrItemQty = Number(crr.quantity);
       const crrItemPrice = Number(crr.price);
       const total = crrItemPrice * crrItemQty;

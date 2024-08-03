@@ -7,11 +7,9 @@ const ProductsProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("Fetching products...");
     fetch("https://fakestoreapi.com/products")
       .then(res => res.json())
       .then(json => {
-        console.log("Products fetched:", json);
         setProducts(json);
         setLoading(false);
       })
