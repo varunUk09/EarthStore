@@ -20,9 +20,7 @@ const CartProvider = ({ children }) => {
   }, []);
   // Save cart to localStorage whenever it changes
   useEffect(() => {
-    if (cart.cartItems.length > 0) {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
+    localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   // Handle itemAdded state
