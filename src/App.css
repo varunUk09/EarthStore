@@ -112,6 +112,14 @@ html body .hoverCta:hover {
 
 /* header */
 
+html body .header {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 999;
+    border-bottom: 1px solid #ddd;
+}
+
 html body .site-nav {
     padding: 2rem 0;
 }
@@ -471,6 +479,7 @@ html body .miniCartwrapper {
     display: flex;
     transition: opacity var(--transitionTime) ease-in-out;
     justify-content: flex-end;
+    z-index: 9999;
 }
 
 html body .miniCartwrapper:not(.show) {
