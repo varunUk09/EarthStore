@@ -8,3 +8,5 @@ Css
 
 My Inspiration : https://store.benjaminhardman.com/
 Store api I have used : https://fakestoreapi.com/
+
+Status : Project completed and delivered ✅
