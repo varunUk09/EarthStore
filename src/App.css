@@ -653,7 +653,7 @@ html body .miniCartFooter {
     background: white;
 }
 
-html body .miniCartMessageWrapper {
+html body .miniCartTooltipWrapper {
     --extra: 1.9rem;
     position: absolute;
     bottom: 0;
@@ -675,13 +675,13 @@ html body .miniCartMessageWrapper {
     box-shadow: 0 0 0.5rem 0.1rem #ddd;
 }
 
-html body .miniCartMessageWrapper.show {
+html body .miniCartTooltipWrapper.show {
     opacity: 1;
     transform: translateY(calc(var(--extra) + 80%));
     -webkit-transform: translateY(calc(var(--extra) + 80%));
 }
 
-html body .miniCartMessageWrapper::before {
+html body .miniCartTooltipWrapper::before {
     content: '';
     position: absolute;
     top: calc(var(--extra) * -1 + 0.1rem);
@@ -693,12 +693,22 @@ html body .miniCartMessageWrapper::before {
     -webkit-transform: translateX(-50%);
 }
 
-html body .miniCartMessage {
+html body .miniCartTooltip,
+html body .cartMessage {
     font-weight: bold;
     font-size: var(--smfnt);
 }
 
-html body .miniCartMessageWrapper:empty {
+html body .cartMessage {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+html body .cartMessage.show {
+    opacity: 1;
+}
+
+html body .miniCartTooltipWrapper:empty {
     pointer-events: none;
 }
 

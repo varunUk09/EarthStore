@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CartContext } from "@context/CartContext";
 import ProductDetailsWithQuantity from "@components/ProductDetailsWithQuantity";
 export default function Drawer() {
-  const { miniCartShow, setMiniCartShow, cart, removeFromCart } = useContext(CartContext);
+  const { miniCartShow, setMiniCartShow, cart, removeFromCart, itemRemoved } = useContext(CartContext);
   return (
     <div
       className={`miniCartwrapper ${miniCartShow ? "show" : ""}`}
@@ -15,6 +15,9 @@ export default function Drawer() {
         <div className='miniCartContent'>
           <h2 className='miniCartTitle'>
             Cart
+            <div className={`cartMessage ${itemRemoved ? "show" : ""}`} style={{ color: itemRemoved ? "red" : "inherit" }}>
+              {itemRemoved && "Item removed ❌"}
+            </div>
             <button
               className='closeMiniCart'
               onClick={() => {

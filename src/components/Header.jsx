@@ -5,7 +5,7 @@ import { CartContext } from "@context/CartContext";
 
 export default function Header() {
   const location = useLocation();
-  const { miniCartShow, setMiniCartShow, cart, cartUpdated } = useContext(CartContext);
+  const { miniCartShow, setMiniCartShow, cart, itemAdded } = useContext(CartContext);
   const cartItemsNum = cart.cartItems.length;
   // Render Breadcrumbs component only if the current path is not the home page
   const shouldShowBreadcrumbs = location.pathname !== "/";
@@ -36,8 +36,8 @@ export default function Header() {
                   <path d='M14.74 18h36.51l3.59 36.73h-43.7z'></path>
                 </g>
               </svg>
-              <div className={`miniCartMessageWrapper ${cartUpdated ? "show" : ""}`}>
-                <p className='miniCartMessage'>Item Added Successfully ! ✅</p>
+              <div className={`miniCartTooltipWrapper ${itemAdded ? "show" : ""}`}>
+                <p className='miniCartTooltip'>Item Added Successfully ! ✅</p>
               </div>
             </a>
           </li>

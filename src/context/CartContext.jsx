@@ -4,7 +4,8 @@ const CartContext = createContext("");
 
 const CartProvider = ({ children }) => {
   const [miniCartShow, setMiniCartShow] = useState(false);
-  const [cartUpdated, setCartUpdated] = useState(false);
+  const [itemAdded, setitemAdded] = useState(false);
+  const [itemRemoved, setItemRemoved] = useState(false);
   const [cart, setCart] = useState({
     cartItems: [],
     subtotal: 0.0,
@@ -24,17 +25,29 @@ const CartProvider = ({ children }) => {
     }
   }, [cart]);
 
-  // Handle cartUpdated state
+  // Handle itemAdded state
   useEffect(() => {
-    if (cartUpdated) {
+    if (itemAdded) {
       const timer = setTimeout(() => {
-        setCartUpdated(false);
+        setitemAdded(false);
       }, 1000);
 
       // Clean up the timer
       return () => clearTimeout(timer);
     }
-  }, [cartUpdated]);
+  }, [itemAdded]);
+
+  // Handle itemRemoved state
+  useEffect(() => {
+    if (itemRemoved) {
+      const timer = setTimeout(() => {
+        setItemRemoved(false);
+      }, 1000);
+
+      // Clean up the timer
+      return () => clearTimeout(timer);
+    }
+  }, [itemRemoved]);
 
   // Add or update item in cart
   const addToBag = product => {
@@ -66,7 +79,7 @@ const CartProvider = ({ children }) => {
 
       const subtotal = calculateTotal(updatedItems);
       if (!product.cart) {
-        setCartUpdated(true);
+        setitemAdded(true);
       }
       return { cartItems: updatedItems, subtotal };
     });
@@ -86,7 +99,8 @@ const CartProvider = ({ children }) => {
     setCart(prevCart => {
       let NEWITEMS = prevCart.cartItems.filter(item => item.id !== id);
       const subtotal = calculateTotal(NEWITEMS);
-      setMiniCartShow(true);
+      // setMiniCartShow(true);
+      setItemRemoved(true);
       return {
         cartItems: NEWITEMS,
         subtotal: subtotal,
@@ -94,7 +108,7 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  return <CartContext.Provider value={{ miniCartShow, setMiniCartShow, addToBag, cart, removeFromCart, cartUpdated }}>{children}</CartContext.Provider>;
+  return <CartContext.Provider value={{ miniCartShow, setMiniCartShow, addToBag, cart, removeFromCart, itemAdded, itemRemoved }}>{children}</CartContext.Provider>;
 };
 
 export default CartProvider;
